@@ -1,0 +1,33 @@
+.result {
+  height: 60px;
+  background-color: #bbb;
+  width: 100%;
+  overflow: hidden;
+}
+
+.result p {
+  font-size: 40px;
+  margin: 5px;
+
+}
+
+.calculator-body {
+  max-width: 400px;
+  margin: auto;
+  
+}
+
+.calculator-body h1{
+  text-align: center;
+}
+
+.button {
+  display: block;
+  background-color: #bbb;
+}
+
+button {
+  width: 25%;
+  height: 60px;
+  font-size: 30px;
+}
