@@ -3,15 +3,18 @@ import './App.css';
 import ResultComponent from './components/ResultComponent';
 import KeyPadComponent from "./components/KeyPadComponent";
 
+
 class App extends Component {
     constructor() {
         super();
 
         this.state = {
-            memory: 0,
-            result: ""
+            memory: '',
+            result: "",
+            Quadmode: false
         }
     }
+
 
     onClick = button => {
 
@@ -28,6 +31,9 @@ class App extends Component {
         else if (button === "^") {
             this.power()
         }
+        else if (button === "Sqrt") {
+            this.squareRoot()
+        }
         else if (button === "Sin") {
             this.calcSin()
         }
@@ -40,7 +46,7 @@ class App extends Component {
         else if (button === "M") {
             this.setState({
                 result: this.state.memory,
-                memory: 0
+                memory: this.state.memory
             })
         }
         else if (button === "M+") {
@@ -60,13 +66,18 @@ class App extends Component {
         }
     };
 
+    toggleMode = () =>{
+        this.setState({
+            Quadmode: true
+        });
+    }
+
 
     calculate = () => {
         var checkResult = ''
         if (this.state.result.includes('--')) {
             checkResult = this.state.result.replace('--', '+')
         }
-
         else {
             checkResult = this.state.result
         }
@@ -102,21 +113,27 @@ class App extends Component {
         })
     };
 
+    squareRoot = () => {
+        this.setState({
+            result: Math.pow(this.state.result, 0.5)
+        })
+    };
+
     calcSin = () => {
         this.setState({
-            result: Math.sin(this.state.result * (Math.PI / 180))
+            result: Math.sin(this.state.result * (Math.PI / 180)).toFixed(14)
         })
     };
 
     calcCos = () => {
         this.setState({
-            result: Math.cos(this.state.result * (Math.PI / 180))
+            result: Math.cos(this.state.result * (Math.PI / 180)).toFixed(14)
         })
     };
 
     calcTan = () => {
         this.setState({
-            result: Math.tan(this.state.result * (Math.PI / 180))
+            result: Math.tan(this.state.result * (Math.PI / 180)).toFixed(14)
         })
     };
 
@@ -124,7 +141,7 @@ class App extends Component {
         return (
             <div>
                 <div className="calculator-body">
-                    <h1>Simple Calculator</h1>
+                    <h1 style={{background: "grey"}}>Simple Calculator</h1>
                     <ResultComponent result={this.state.result} />
                     <KeyPadComponent onClick={this.onClick} />
                 </div>

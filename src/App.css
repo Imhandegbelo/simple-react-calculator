@@ -31,3 +31,9 @@ button {
   height: 60px;
   font-size: 30px;
 }
+
+#Quad-btn {
+  width: 100%;
+  color: whitesmoke;
+  background: grey;
+}
